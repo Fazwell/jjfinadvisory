@@ -1,7 +1,7 @@
 // app/page.tsx - Clean homepage
 import Header from '@/components/Layout/Header';
 import Footer from '@/components/Layout/Footer';
-
+import PreFooter from '@/components/Layout/PreFooter';
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-zinc-50">
@@ -13,6 +13,7 @@ export default function Home() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">Expert financial guidance for your success.</p>
         </div>
       </main>
+      <PreFooter/>
       <Footer />
     </div>
   );

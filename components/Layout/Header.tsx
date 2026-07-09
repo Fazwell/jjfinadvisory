@@ -1,7 +1,7 @@
-// Updated components/Header.tsx - Premium
+// Fixed Header.tsx - Overlay mobile menu
 'use client';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Header() {
@@ -30,20 +30,31 @@ export default function Header() {
           <a href="/contact" className="hidden md:block px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-black transition">Get Consultation</a>
           
           <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2">
-            <Menu size={24} />
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Overlay Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t bg-white px-6 py-6 flex flex-col gap-6 text-lg">
-          <Link href="/" className="hover:text-gray-900">Home</Link>
-          <Link href="/services" className="hover:text-gray-900">Services</Link>
-          <Link href="/about" className="hover:text-gray-900">About</Link>
-          <Link href="/insights" className="hover:text-gray-900">Insights</Link>
-          <Link href="/contact" className="hover:text-gray-900">Contact</Link>
-          <a href="/contact" className="mt-4 px-6 py-3 bg-gray-900 text-white text-center rounded-full font-medium">Get Consultation</a>
+        <div className="fixed inset-0 bg-black/70 z-[60] md:hidden" onClick={() => setIsOpen(false)}>
+          <div className="bg-white h-full w-4/5 max-w-xs ml-auto p-8 flex flex-col" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-end mb-8">
+              <button onClick={() => setIsOpen(false)}>
+                <X size={28} />
+              </button>
+            </div>
+            
+            <div className="flex flex-col gap-8 text-xl font-medium">
+              <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
+              <Link href="/services" onClick={() => setIsOpen(false)}>Services</Link>
+              <Link href="/about" onClick={() => setIsOpen(false)}>About</Link>
+              <Link href="/insights" onClick={() => setIsOpen(false)}>Insights</Link>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+            </div>
+            
+            <a href="/contact" onClick={() => setIsOpen(false)} className="mt-auto px-6 py-4 bg-gray-900 text-white text-center rounded-full font-medium">Get Consultation</a>
+          </div>
         </div>
       )}
     </header>
