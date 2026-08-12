@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu } from "lucide-react";
 import { useState } from "react";
 
 import { navigationConfig } from "@/config/navigation";
-import MobileMenu from "@/components/layout/MobileMenu";
+import MobileMenu from "@/components/Layout/MobileMenu";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
