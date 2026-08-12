@@ -11,16 +11,15 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full pt-5 md:pt-6">
+    <header className="fixed left-0 top-0 z-50 w-full pt-5 md:pt-6">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6">
         <div
           className="
             flex items-center justify-between
             rounded-full
-            border border-black/10
-            bg-white/90
+            border border-black
+            bg-[#FFB22C]
             px-4 py-3
-            backdrop-blur-md
             sm:px-5
             md:px-6
           "
@@ -32,13 +31,13 @@ export default function Header() {
             aria-label="J&J Fin Advisory"
             className="flex shrink-0 items-center gap-2"
           >
-            <span className="text-lg font-extrabold tracking-[-0.05em] text-black sm:text-xl">
+            <span className="text-lg font-black tracking-[-0.06em] text-black sm:text-xl">
               J&J
             </span>
 
-            <span className="hidden h-5 w-px bg-black/20 sm:block" />
+            <span className="hidden h-5 w-px bg-black/30 sm:block" />
 
-            <span className="hidden text-sm font-semibold tracking-tight text-black sm:block">
+            <span className="hidden text-sm font-bold tracking-[-0.02em] text-black sm:block">
               FIN ADVISORY
             </span>
           </Link>
@@ -51,8 +50,8 @@ export default function Header() {
                 href={item.href}
                 className="
                   text-sm
-                  font-medium
-                  text-black/60
+                  font-semibold
+                  text-black/65
                   transition-colors
                   hover:text-black
                 "
@@ -71,15 +70,15 @@ export default function Header() {
               items-center
               gap-2
               rounded-full
-              bg-primary
+              bg-black
               px-5
               py-2.5
               text-sm
               font-semibold
-              text-black
+              text-white
               transition-all
-              hover:bg-black
-              hover:text-white
+              hover:bg-white
+              hover:text-black
               md:inline-flex
             "
           >
