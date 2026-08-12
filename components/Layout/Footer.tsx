@@ -1,38 +1,183 @@
-// Updated Footer.tsx with react-icons
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
-import Link from 'next/link';
+import Link from "next/link";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
+
+import { navigationConfig } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
-          <div>
-            <div className="text-xl font-bold">J&J Fin Consultancy</div>
+    <footer className="border-t border-black/10 bg-black text-white">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Main Footer */}
+        <div className="grid gap-12 py-16 md:grid-cols-12 md:py-20">
+          {/* Brand */}
+          <div className="md:col-span-5">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2"
+            >
+              <span className="text-2xl font-extrabold tracking-[-0.05em]">
+                {siteConfig.shortName}
+              </span>
+
+              <span className="h-6 w-px bg-white/30" />
+
+              <span className="text-sm font-semibold tracking-tight text-white/80">
+                FIN ADVISORY
+              </span>
+            </Link>
+
+            <p className="mt-6 max-w-md text-sm leading-7 text-white/60">
+              {siteConfig.description}
+            </p>
+
+            <Link
+              href={navigationConfig.cta.href}
+              className="
+                group
+                mt-7
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-primary
+                px-5
+                py-3
+                text-sm
+                font-semibold
+                text-black
+                transition-colors
+                hover:bg-white
+              "
+            >
+              {navigationConfig.cta.label}
+
+              <ArrowUpRight
+                size={16}
+                className="
+                  transition-transform
+                  duration-200
+                  group-hover:-translate-y-0.5
+                  group-hover:translate-x-0.5
+                "
+              />
+            </Link>
           </div>
-          
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 text-sm">
-            <Link href="/" className="hover:text-gray-400">Home</Link>
-            <Link href="/services" className="hover:text-gray-400">Services</Link>
-            <Link href="/contact" className="hover:text-gray-400">Contact</Link>
+
+          {/* Navigation */}
+          <div className="md:col-span-3 md:col-start-7">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
+              Navigation
+            </h3>
+
+            <nav className="mt-5 flex flex-col gap-4">
+              {navigationConfig.footer.company.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="
+                    w-fit
+                    text-sm
+                    text-white/70
+                    transition-colors
+                    hover:text-white
+                  "
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
           </div>
-          
-          <div className="flex justify-center md:justify-end gap-6">
-            <a href="#" aria-label="Facebook" className="hover:text-gray-400"><FaFacebookF size={22} /></a>
-            <a href="#" aria-label="X" className="hover:text-gray-400"><FaTwitter size={22} /></a>
-            <a href="#" aria-label="Instagram" className="hover:text-gray-400"><FaInstagram size={22} /></a>
+
+          {/* Contact */}
+          <div className="md:col-span-3">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
+              Contact
+            </h3>
+
+            <div className="mt-5 flex flex-col gap-5">
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="
+                  flex
+                  items-start
+                  gap-3
+                  text-sm
+                  text-white/70
+                  transition-colors
+                  hover:text-white
+                "
+              >
+                <Mail
+                  size={17}
+                  className="mt-0.5 shrink-0 text-primary"
+                />
+
+                <span>{siteConfig.contact.email}</span>
+              </a>
+
+              <a
+                href={`tel:${siteConfig.contact.phone}`}
+                className="
+                  flex
+                  items-start
+                  gap-3
+                  text-sm
+                  text-white/70
+                  transition-colors
+                  hover:text-white
+                "
+              >
+                <Phone
+                  size={17}
+                  className="mt-0.5 shrink-0 text-primary"
+                />
+
+                <span>{siteConfig.contact.phone}</span>
+              </a>
+
+              <p className="text-sm text-white/50">
+                {siteConfig.contact.location}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div className="border-t border-gray-800 py-6">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4">
-          <p>&copy; {year} J&J Fin Consultancy. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="/terms" className="hover:text-white">Terms</Link>
-            <Link href="/privacy" className="hover:text-white">Privacy</Link>
+
+        {/* Bottom Footer */}
+        <div
+          className="
+            flex
+            flex-col
+            gap-4
+            border-t
+            border-white/10
+            py-6
+            text-xs
+            text-white/40
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          "
+        >
+          <p>
+            © {new Date().getFullYear()} {siteConfig.legalName}. All rights
+            reserved.
+          </p>
+
+          <div className="flex items-center gap-5">
+            <Link
+              href={siteConfig.navigation.privacy}
+              className="transition-colors hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              href={siteConfig.navigation.terms}
+              className="transition-colors hover:text-white"
+            >
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
